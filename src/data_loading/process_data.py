@@ -12,4 +12,4 @@ raw_data["weekday"] = date_object.dt.day_name()
 raw_data["rest_days"] = date_object.diff().dt.days.fillna(0).astype(int)
 
 # Save the processed data to a new file
-raw_data.to_csv('processed_data.csv', index=False)
+raw_data.to_csv('../../data/processed_data.csv', index=False)
