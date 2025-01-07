@@ -1,9 +1,7 @@
 import pandas as pd
 
 # Load the dataset from a CSV file
-raw_data = pd.read_csv(
-    "/Users/magnus/Documents/Uni/WiSe24:25/Data Literacy/TuebiTigers/data/raw_game_data_tigers.csv"
-)
+raw_data = pd.read_csv("data/raw_game_data_tigers.csv")
 
 date_object = pd.to_datetime(raw_data["date"], format="%d.%m.%Y")
 
@@ -27,7 +25,4 @@ for column in columns:
     raw_data[column] = raw_data[column].str.replace(",", ".").astype(float)
 
 # Save the processed data to a new file
-raw_data.to_csv(
-    "/Users/magnus/Documents/Uni/WiSe24:25/Data Literacy/TuebiTigers/data/processed_data.csv",
-    index=False,
-)
+raw_data.to_csv("data/processed_data.csv",index=False,)
