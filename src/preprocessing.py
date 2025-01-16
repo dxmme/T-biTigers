@@ -1,7 +1,12 @@
 import pandas as pd
 
+loadTuebinden = True
+
 # Load the dataset from a CSV file
-raw_data = pd.read_csv("../data/raw_game_data_tigers.csv")
+if (loadTuebinden):
+    raw_data = pd.read_csv("../data/raw_game_data_tigers.csv")
+else:
+    raw_data = pd.read_csv("../data/raw_game_data_heidelberg.csv")
 
 date_object = pd.to_datetime(raw_data["date"], format="%d.%m.%Y")
 
@@ -18,11 +23,18 @@ columns = [
     "2_pointer_percentage",
     "3_pointer_percentage",
     "free_throw_percentage",
-    "jackson_minutes_played",
 ]
+
+if (loadTuebinden):
+    columns.append("jackson_minutes_played")
+else:
+    columns.append("jaworski_minutes_played")
 
 for column in columns:
     raw_data[column] = raw_data[column].str.replace(",", ".").astype(float)
 
 # Save the processed data to a new file
-raw_data.to_csv("../data/processed_data.csv", index=False,)
+if (loadTuebinden):
+    raw_data.to_csv("../data/processed_data_tigers.csv", index=False,)
+else:
+    raw_data.to_csv("../data/processed_data_heidelberg.csv", index=False,)
